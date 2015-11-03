@@ -1,8 +1,8 @@
 require 'sinatra/base'
 
 class GitReceiver < Sinatra::Base
-  get '/' do
-    'Hello GitReceiver!'
+  post '/commits' do
+    "Hello World"
   end
 
   # start the server if ruby file executed directly
