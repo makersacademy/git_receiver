@@ -7,6 +7,9 @@ require 'rack/test'
 require 'capybara'
 require 'capybara/rspec'
 require 'capybara/json'
+require 'dotenv'
+
+Dotenv.load
 
 Capybara.app = GitReceiver
 

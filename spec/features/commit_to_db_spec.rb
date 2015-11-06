@@ -5,7 +5,7 @@ require 'firebase'
 describe 'committing data to a database' do
   include Rack::Test::Methods
 
-  let(:database) { Firebase::Client.new('https://glaring-fire-9853.firebaseio.com/') }
+  let(:database) { Firebase::Client.new(ENV['DATABASE_URL']) }
 
   def app
     GitReceiver

@@ -1,10 +1,13 @@
 require 'sinatra/base'
 require 'json'
 require 'firebase'
+require 'dotenv'
+
+Dotenv.load
 
 class GitReceiver < Sinatra::Base
   post '/commits' do
-    firebase = Firebase::Client.new("https://glaring-fire-9853.firebaseio.com/")
+    firebase = Firebase::Client.new(ENV['DATABASE_URL'])
 
     request.body.rewind
     data = request.body.read

@@ -12,6 +12,7 @@ GEM
       httpclient (~> 2.2)
       multi_json (~> 1.3)
     diff-lcs (1.2.5)
+    dotenv (2.0.2)
     extlib (0.9.16)
     firebase (0.2.4)
       httpclient
@@ -62,6 +63,7 @@ PLATFORMS
 DEPENDENCIES
   capybara
   capybara-json
+  dotenv
   firebase
   rspec
   rspec-sinatra
