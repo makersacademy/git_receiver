@@ -22,13 +22,10 @@ webhookurl="localhost:9292/commits"
 # Webhook-posting function
 
 function posthook {
-  echo "arguments to posthook:"
-  echo "$1"
-  echo "$2"
   curl "$webhookurl" \
   -X POST \
   -H "Content-type: application/json" \
-  -d "{\"user\": \""$1"\", \"commits\": ["$2"], \"remote_url\": \""$3"\"}"
+  -d "{\"email\": \""$1"\", \"commits\": ["$2"], \"remote_url\": \""$3"\"}"
 }
 
 # Join function in the style of Pascal Pilz
@@ -37,8 +34,6 @@ function join { local IFS="$1"; shift; echo "$*"; }
 
 remote="$1"
 url="$2"
-
-echo "pushing to remote: $remote at URL: $url"
 
 z40=0000000000000000000000000000000000000000
 
@@ -71,9 +66,9 @@ do
       done <<< "$commits"
       # Construct the joined string for JSON
       commits_string=`join , "${commits_array[@]}"`
+      email=`git config user.email`
       # Post the commits to the webhook along with the user
-      # TODO: get the username from the git config somehow
-      posthook "sjmog" "$commits_string" "$url" 
+      posthook "$email" "$commits_string" "$url"
       exit 0
     else
       echo "Commit is empty"
