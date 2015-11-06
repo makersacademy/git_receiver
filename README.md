@@ -1,6 +1,6 @@
 # Git Receiver
 
-Transforms data concerning git commits from a provided [`pre_push`][pre-push] script and places into a Firebase database.
+Transforms data concerning git commits from a provided [`pre_push`](pre-push) script and places into a Firebase database.
 
 ## How to Use
 
