@@ -13,7 +13,12 @@ class GitReceiver < Sinatra::Base
     data = request.body.read
     hsh = JSON.parse(data.to_s)
 
-    user = hsh["remote_url"].match(/github.com\/(.+)\//)[1]
+    if matched_user = hsh["remote_url"].match(/github.com\/(.+)\//)
+      user = matched_user[1]
+    else
+      user = hsh["remote_url"].match(/github\.com\:(.+)\//)[1]
+    end
+
     email = hsh["email"]
     url = hsh["remote_url"]
     commits = hsh["commits"]
