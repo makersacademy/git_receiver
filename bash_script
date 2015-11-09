@@ -30,7 +30,7 @@ function makersinit {
   # Webhook-posting function
 
   function posthook {
-    curl "localhost:9292/commits" \
+    curl "git-receiver.herokuapp.com/commits" \
     -X POST \
     -H "Content-type: application/json" \
     -d "{\"email\": \""$1"\", \"commits\": ["$2"], \"remote_url\": \""$3"\"}"
