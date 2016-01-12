@@ -7,7 +7,7 @@
 function makersinit {
   git init
   cat > .git/hooks/pre-push.sample <<'endfn'
-  #!/bin/sh
+  #!/bin/bash
   echo 'Pushing details to Tracker'
   # Notifies a webhook on attempted "git push".  Called by "git
   # push" after it has checked the remote status, but before anything has been
@@ -29,7 +29,7 @@ function makersinit {
   # Utility functions
   # Webhook-posting function
 
-  function posthook {
+  posthook(){
     curl "git-receiver.herokuapp.com/commits" \
     -X POST \
     -H "Content-type: application/json" \
@@ -38,7 +38,7 @@ function makersinit {
 
   # Join function in the style of Pascal Pilz
 
-  function join { local IFS="$1"; shift; echo "$*"; }
+  join(){ local IFS="$1"; shift; echo "$*"; }
   
   remote="$1"
   url="$2"
@@ -71,7 +71,7 @@ function makersinit {
         # Construct an array of the commit SHAs
         while read -r line; do
           commits_array+=(\""$line"\")
-        done <<< "$commits"
+        done
         # Construct the joined string for JSON
         commits_string=`join , "${commits_array[@]}"`
         email=`git config user.email`
