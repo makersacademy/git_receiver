@@ -6,7 +6,6 @@ describe 'Pushing to receiver from the command line' do
   before do
     system("cd ..")
     system("mkdir git_pusher_test")
-    system("cd git_pusher_test")
     allow(Kernel).to receive(:`).with("git config user.email").and_return "s_morgan@me.com"
   end
 
