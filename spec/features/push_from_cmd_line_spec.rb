@@ -4,9 +4,9 @@ describe 'Pushing to receiver from the command line' do
   let(:service) { GitPusher.new }
 
   before do
-    system("cd spec/fixtures")
-    system("mkdir test")
-    system("cd test")
+    system("cd ..")
+    system("mkdir git_pusher_test")
+    system("cd git_pusher_test")
     allow(Kernel).to receive(:`).with("git config user.email").and_return "s_morgan@me.com"
   end
 
@@ -19,26 +19,26 @@ describe 'Pushing to receiver from the command line' do
   end
 
   after do
-    system("cd spec/fixtures")
-    system("rm -rf test")
+    system("cd ..")
+    system("rm -rf git_pusher_test")
   end
 
   private
 
   def makersinit
-    system("cd spec/fixtures")
+    system("cd ../git_pusher_test")
     system("makersinit")
   end
 
   def make_commit
-    system("cd spec/fixtures")
+    system("cd ../git_pusher_test")
     system("touch test_file_#{rand(0..58400)}.rb")
     system("git add .")
     system("git commit -m 'test commit'")
   end
 
   def push_commit
-    system("cd spec/fixtures")
+    system("cd ../git_pusher_test")
     system("git push origin master")
   end
 
