@@ -17,10 +17,10 @@ describe 'Pushing to receiver from the command line' do
     push_commit
   end
 
-  after do
-    system("cd ..")
-    system("rm -rf git_pusher_test")
-  end
+  # after do
+  #   system("cd ..")
+  #   system("rm -rf git_pusher_test")
+  # end
 
   private
 
