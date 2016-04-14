@@ -11,6 +11,10 @@ class GitReceiver < Sinatra::Base
 
     request.body.rewind
     data = request.body.read
+
+    p "Received request: "
+    p data
+
     hsh = JSON.parse(data.to_s)
 
     if matched_user = hsh["remote_url"].match(/github.com\/(.+)\//)
